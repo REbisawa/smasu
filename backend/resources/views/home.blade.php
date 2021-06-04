@@ -1,24 +1,11 @@
 <x-app-layout>
-    {{-- l-top --}}
-        {{-- calendar --}}
-        {{-- up comming events --}}
-    {{-- r-top --}}
-        {{-- recent activity --}}
-    {{-- bottom --}}
-        {{-- schedules from today --}}
-        {{-- for --}}
-        <!-- component -->
-	<link rel="dns-prefetch" href="//unpkg.com" />
-	<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
-	<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
-	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
 	<style>
 		[x-cloak] {
 			display: none;
 		}
 	</style>
-    <div class="antialiased sans-serif bg-gray-100 h-1/2 w-1/2 px-2">
-        <div x-data="app()" x-init="[initDate(), getNoOfDays(), readEvent()]" x-cloak>
+    <div class="antialiased sans-serif bg-gray-100 px-2">
+        <div>
             <div class="container mx-auto px-4 py-2">
 
                 <div class="bg-white rounded-lg shadow overflow-hidden">
@@ -72,33 +59,28 @@
                                 ></div>
                             </template>	
                             <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">	
-                                <div style="width: 14.28%; height: 50px" class="px-1 pt-2 border-r border-b">
+                                <div style="width: 14.28%; height: 50px" class="p-1 border-r border-b">
                                     <div
                                         @click="showEventModal(date)"
                                         x-text="date"
-                                        class="inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100"
+                                        class="inline-flex w-6 h-3 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100 p-2"
                                         :class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-200': isToday(date) == false }"	
                                     ></div>
                                     <div style="height: 80px;" class="overflow-y-auto mt-1">
-                                            <div 
-                                            class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center rounded-full text-sm w-6 h-6 bg-gray-700 text-white leading-none"
-                                            x-show="events.filter(e => e.event_date === new Date(year, month, date).toDateString()).length"
-                                            x-text="events.filter(e => e.event_date === new Date(year, month, date).toDateString()).length"></div> 
-
-                                            <template x-for="event in events.filter(e => new Date(e.event_date).toDateString() ===  new Date(year, month, date).toDateString() )">
-                                            <div
-                                                class="h-3 w-3 rounded-lg mb-1 overflow-hidden border mx-a"
-                                                :class="{
-                                                    'border-blue-200 text-blue-800 bg-blue-100': event.event_theme === 'blue',
-                                                    'border-red-200 text-red-800 bg-red-100': event.event_theme === 'red',
-                                                    'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_theme === 'yellow',
-                                                    'border-green-200 text-green-800 bg-green-100': event.event_theme === 'green',
-                                                    'border-purple-200 text-purple-800 bg-purple-100': event.event_theme === 'purple'
-                                                }"
-                                                @click="editEventModal(event)"
-                                            >
-                                            </div>
-                                        </template>
+                                            {{-- <div class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center rounded-full text-sm w-6 h-6 bg-gray-700 text-white leading-none" x-show="events.filter(e => e.event_date === new Date(year, month, date).toDateString())" x-text="events.filter(e => e.event_date === new Date(year, month, date).toDateString()).length"></div>  --}}
+                                            <template x-for="event in events.filter(e => new Date(e.event_date).toDateString() ===  new Date(year, month, date).toDateString() )">	
+                                                <div
+                                                    class="rounded-lg h-1.5 mx-1 mt-px overflow-hidden border"
+                                                    :class="{
+                                                        'border-blue-200 text-blue-800 bg-blue-100': event.event_theme === 'blue',
+                                                        'border-red-200 text-red-800 bg-red-100': event.event_theme === 'red',
+                                                        'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_theme === 'yellow',
+                                                        'border-green-200 text-green-800 bg-green-100': event.event_theme === 'green',
+                                                        'border-purple-200 text-purple-800 bg-purple-100': event.event_theme === 'purple'
+                                                    }" @click="editEventModal(event)"
+                                                >
+                                                </div>
+                                            </template>
                                     </div>
                                 </div>
                             </template>
@@ -220,173 +202,31 @@
             <!-- /edit Modal -->
         </div>
     </div>
+        <x-slot name="timeline">
+            <div class="container mx-auto px-4 py-2">
+                <div class="bg-white shadow rounded-xl overflow-hidden">
+                    <h1 class="bg-gray-300 text-center text-xl p-2">イベントタイムライン</h1>
 
-        <script>
-            const MONTH_NAMES = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
-            const DAYS = ['日', '月', '火', '水', '木', '金', '土'];
-
-            function app() {
-                return {
-                    month: '',
-                    year: '',
-                    no_of_days: [],
-                    blankdays: [],
-                    days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                    events: [
-                        {
-                            event_date: new Date(2020, 3, 1),
-                            event_title: "April Fool's Day", 
-                            event_text: "",
-                            event_theme: 'blue'
-                        },
-
-                        {
-                            event_date: new Date(2020, 3, 10),
-                            event_title: "Birthday",
-                            event_text: "",
-                            event_theme: 'red'
-                        },
-
-                        {
-                            event_date: new Date(2020, 3, 16),
-                            event_title: "Upcoming Event",
-                            event_text: "",
-                            event_theme: 'green'
-                        }
-                    ],
-                    event_title: '',
-                    event_text: '',
-                    event_date: '',
-                    event_theme: 'blue',
-
-                    themes: [
-                        {
-                            value: "blue",
-                            label: "Blue Theme"
-                        },
-                        {
-                            value: "red",
-                            label: "Red Theme"
-                        },
-                        {
-                            value: "yellow",
-                            label: "Yellow Theme"
-                        },
-                        {
-                            value: "green",
-                            label: "Green Theme"
-                        },
-                        {
-                            value: "purple",
-                            label: "Purple Theme"
-                        }
-                    ],
-
-                    openEventModal: false,
-                    openEditModal: false,
-
-                    initDate() {
-                        let today = new Date();
-                        this.month = today.getMonth();
-                        this.year = today.getFullYear();
-                        this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
-                    },
-
-                    isToday(date) {
-                        const today = new Date();
-                        const d = new Date(this.year, this.month, date);
-
-                        return today.toDateString() === d.toDateString() ? true : false;
-                    },
-
-                    showEventModal(date) {
-                        // open the modal
-                        this.openEventModal = true;
-                        this.event_date = new Date(this.year, this.month, date).toDateString();
-                    },
-
-                    editEventModal(event) {
-                        // console.log(event.event_date,event.event_title);
-                        this.openEditModal = true;
-                        this.event_title = event.event_title;
-                        this.event_text = event.event_text;
-                        this.event_date = event.event_date;
-                        this.event_theme = event.event_theme;
-                    },
-
-                    addEvent() {
-                        if (this.event_title == '') {
-                            console.log('title is empty');
-                            return;
-                        }
-                        console.log(typeof(this.event_date),typeof(this.event_text), typeof(this.event_date));
-                        this.events.push({
-                            event_date: this.event_date,
-                            event_title: this.event_title,
-                            event_text: this.event_text,
-                            event_theme: this.event_theme
-                        });
-                        
-                        console.log(this.events);
-                        console.log(typeof(this.events));
-
-                        // clear the form data
-                        this.event_title = '';
-                        this.event_date = '';
-                        this.event_text = '';
-                        this.event_theme = 'blue';
-
-                        //close the modal
-                        this.openEventModal = false;
-                    },
-
-                    readEvent() {
-                        // let selectMonth = String(this.year) + '-' + String(this.month+1);
-                        let selectMonth = String(this.year) + '-' + ("00" + (this.month+1)).slice(-2);
-                        var $this = this;
-                        axios.get('/axios', {
-                            params: {
-                                month: selectMonth
-                            }
-                        })
-                        .then(function(response) {
-                            for(var data in response.data){
-                                var item = response.data[data];
-                                console.log(item['scheduled_for']);
-                                $this.event_date = new Date(item['scheduled_for']);
-                                $this.event_title = item['title'];
-                                $this.event_text = item['text'];
-                                $this.event_theme = item['theme'] ? item['theme'] : 'blue';
-                                $this.addEvent();
-
-                            }
-                            app().updateEvent(item);
-                        })
-                        .catch(error => {
-                            console.log(error.response)
-                        });
-                        // console.log(this.events);
-                    },
-
-                    getNoOfDays() {
-                        let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
-
-                        // find where to start calendar day of week
-                        let dayOfWeek = new Date(this.year, this.month).getDay();
-                        let blankdaysArray = [];
-                        for ( var i=1; i <= dayOfWeek; i++) {
-                            blankdaysArray.push(i);
-                        }
-
-                        let daysArray = [];
-                        for ( var i=1; i <= daysInMonth; i++) {
-                            daysArray.push(i);
-                        }
-                        
-                        this.blankdays = blankdaysArray;
-                        this.no_of_days = daysArray;
-                    }
-                }
-            }
-        </script>
+                    <div class="h-72 divide-gray-400 divide-y overflow-y-scroll px-1">
+                        <template x-for="event in events">
+                            <div class="">
+                                <time x-text="event.event_date" class="text-sm text-gray-300"></time>
+                                <br>
+                                <p x-text="event.event_title"></p>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+            {{-- <h1>Hello world</h1> --}}
+        </x-slot>
+        <x-slot name="employee">
+            <div class="px-5">
+                @php
+                    $id = Auth::id();
+                    echo($id);
+                    $users = 
+                @endphp
+            </div>
+        </x-slot>
 </x-app-layout>

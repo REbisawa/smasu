@@ -18,6 +18,7 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/components.js') }}"></script>
 
         <!-- axios CDN -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
@@ -26,7 +27,7 @@
         <div class="min-h-screen flex bg-gray-100">
             
             <!-- Page Heading -->
-            <header class="bg-blue-800 shadow w-2/5 bb">
+            <header class="bg-indigo-500 shadow w-2/5 bb">
                 <div class="flex mx-8 my-4 w-full items-center">
 
                     <a href="{{ route('home') }}" class="pl-5">
@@ -94,8 +95,16 @@
             </header>
 
             <!-- Page Content -->
-            <main class="w-3/4">
-                {{ $slot }}
+            <main class="w-3/4 flex flex-wrap" x-data="app()" x-init="[initDate(), getNoOfDays(), readEvent()]" x-cloak>
+                <div class="h-1/2 w-1/2 py-3">
+                    {{ $slot }}
+                </div>
+                <div class=" h-1/2 w-1/2 py-3">
+                    {{ $timeline }}
+                </div>
+                <div class="w-full h-1/2 py-3 bg-gray-600">
+                    {{ $employee }}
+                </div>
             </main>
         </div>
     </body>
