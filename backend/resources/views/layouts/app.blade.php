@@ -30,7 +30,7 @@
             <header class="bg-indigo-500 shadow w-2/5 bb">
                 <div class="flex mx-8 my-4 w-full items-center">
 
-                    <a href="{{ route('home') }}" class="pl-5">
+                    <a href="{{ route('admin.home') }}" class="pl-5">
                         <x-application-logo class="block h-10 w-auto fill-current" style="fill: white"/>
                     </a>
                     <div class="mx-auto text-center mt-2">
@@ -50,10 +50,10 @@
                           
                             <x-slot name="content">
                                 <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
+                                <form method="POST" action="{{ route('admin.logout') }}">
                                     @csrf
                           
-                                    <x-dropdown-link :href="route('logout')"
+                                    <x-dropdown-link :href="route('admin.logout')"
                                             onclick="event.preventDefault();
                                                         this.closest('form').submit();">
                                         {{ __('Log out') }}
