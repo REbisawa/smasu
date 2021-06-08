@@ -222,11 +222,11 @@
         </x-slot>
         <x-slot name="employee">
             <div class="px-5">
-                @php
+                {{-- @php
                     $id = Auth::id();
                     echo($id);
                     $users = 
-                @endphp
+                @endphp --}}
             </div>
         </x-slot>
 </x-app-layout>

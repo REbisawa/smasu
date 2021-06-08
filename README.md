@@ -1,4 +1,4 @@
-# smasu_line 🐳
+# smasu 🐳
 
 
 ## Introduction

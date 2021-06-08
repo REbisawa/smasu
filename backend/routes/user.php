@@ -85,6 +85,6 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 //↓lineログインルーティング
 //line認証画面
-Route::get('auth/line', [LineOAuthController::class,'redirectToProvider'])->name('line.login');
+Route::get('/auth/line', [LineOAuthController::class,'redirectToProvider'])->name('line.login');
 // 認証後にリダイレクトされるURL(コールバックURL)
-Route::get('auth/line/callback', [LineOAuthController::class, 'handleProviderCallback']);
+Route::get('/auth/line/callback', [LineOAuthController::class, 'handleProviderCallback']);
