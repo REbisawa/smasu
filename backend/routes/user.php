@@ -10,6 +10,7 @@ use App\Http\Controllers\User\Auth\NewPasswordController;
 use App\Http\Controllers\User\Auth\PasswordResetLinkController;
 use App\Http\Controllers\User\Auth\RegisteredUserController;
 use App\Http\Controllers\User\Auth\VerifyEmailController;
+use App\Http\Controllers\User\Auth\LineOAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,6 +85,6 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 //↓lineログインルーティング
 //line認証画面
-Route::get('auth/line', 'Auth\LineOAuthController@redirectToProvider')->name('line.login');
+Route::get('auth/line', [LineOAuthController::class,'redirectToProvider'])->name('line.login');
 // 認証後にリダイレクトされるURL(コールバックURL)
-Route::get('auth/line/callback', 'Auth\LineOAuthController@handleProviderCallback');
+Route::get('auth/line/callback', [LineOAuthController::class, 'handleProviderCallback']);

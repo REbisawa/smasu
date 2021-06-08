@@ -51,27 +51,5 @@
                 </x-button>
             </div>
         </form>
-        <x-modal>
-            <div class="m-0 p-5">
-                <h2 class="text-lg pb-3">メールアドレス取得</h2>
-                <p class="pb-1">
-                    本サービスではLINEによる認証を利用し、認証ページにて許可を得た場合のみメールアドレスを取得します。
-                </p>
-                <p class="pb-1">
-                    また、取得されたメールアドレスの利用目的に関して、以下に記します。
-                </p>
-                <ul class="list-none">
-                    <li>
-                        ・本サービスのログイン
-                    </li>
-                    <li>
-                        ・本サービスの利用者様へのお知らせ通知
-                    </li>
-                </ul>
-                <div class="text-center mt-5 inline-block">
-                    <x-line-login></x-line-login>
-                </div>
-            </div>
-        </x-modal>
     </x-auth-card>
 </x-guest-layout>

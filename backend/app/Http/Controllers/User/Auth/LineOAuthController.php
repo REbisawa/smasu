@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\User\Auth\RegisteredUserController;
 
 class LineOAuthController extends Controller
 {

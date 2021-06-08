@@ -15,7 +15,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::middleware('auth:admins')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/home', [DashboardController::class, 'index'])->name('home');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
