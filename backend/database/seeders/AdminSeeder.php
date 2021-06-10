@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Admin;
 use App\Models\User;
 
-class UserSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //userの作成
-        // $users = User::factory()->count(10)->create();
+        // Admin::factory()
+        //     ->has(User::factory()->count(10))
+        //     ->create();
     }
 }
