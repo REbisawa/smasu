@@ -16,12 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            // EventTableSeeder::class
-            // UserSeeder::class
+            EventTableSeeder::class,
+            UserSeeder::class,
         ]);
-        // for($i = 1; $i < 10; $i++){
-        //     $user = User::find($i);
-        //     $user->admins()->attach(1);
-        // }
     }
 }

@@ -122,12 +122,15 @@
                         // let selectMonth = String(this.year) + '-' + String(this.month+1);
                         let selectMonth = String(this.year) + '-' + ("00" + (this.month+1)).slice(-2);
                         var $this = this;
-                        axios.get('/axios', {
+                        console.log(user_id);
+                        axios.get('/admin/axios', {
                             params: {
-                                month: selectMonth
+                                month: selectMonth,
+                                id: user_id 
                             }
                         })
                         .then(function(response) {
+                            console.log(response);
                             for(var data in response.data){
                                 var item = response.data[data];
                                 console.log(item['scheduled_for']);

@@ -26,7 +26,7 @@ class EventFactory extends Factory
             //データ挿入
             'title' => $this->faker->word,
             'text' => $this->faker->text(100),
-            'user_id' => 1,
+            'admin_id' => 1,
             'scheduled_for' => $this->faker->dateTimeBetween('-1 week', '+1 week')->format('Y-m-d'),
 
         ];

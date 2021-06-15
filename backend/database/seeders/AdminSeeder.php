@@ -18,5 +18,6 @@ class AdminSeeder extends Seeder
         // Admin::factory()
         //     ->has(User::factory()->count(10))
         //     ->create();
+        Admin::factory()->create();
     }
 }

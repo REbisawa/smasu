@@ -222,11 +222,30 @@
         </x-slot>
         <x-slot name="employee">
             <div class="px-5">
-                {{-- @php
-                    $id = Auth::id();
-                    echo($id);
-                    $users = 
-                @endphp --}}
+                @php
+                    $admin = Auth::user();
+                    $users = $admin->users;
+                @endphp
+                <table class="border-collapse w-full">
+                    <thead>
+                        <tr class="bg-gray-50 border">
+                            <th class="border-solid" x-text="MONTH_NAMES[month]"></th> 
+                            <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
+                                <th x-text="date" class="border"></th>
+                            </template>
+                            {{-- (date, dateIndex) in no_of_days --}}
+                        </tr>
+                    </thead>
+                    <tbody class="overflow-scroll">
+                        @foreach ($users as $user)
+                        <tr>
+                            <th> {{ $user->name }} </th>
+                            <td></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
+            <a href="http://localhost/admin/axios?month=2021-06&id={{ Auth::id() }}">テスト</a>
         </x-slot>
 </x-app-layout>

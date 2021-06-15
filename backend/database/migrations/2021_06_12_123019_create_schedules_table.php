@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsTable extends Migration
+class CreateSchedulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 20);
-            $table->string('text', 100)->nullable()->default('text');
-            $table->foreignId('admin_id')->consyrained();
+            $table->foreignId('user_id')->constrained();
             $table->date('scheduled_for');
+            $table->timestamp('start');
+            $table->timestamp('end');
+            $table->string('memo', 100)->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('schedules');
     }
 }

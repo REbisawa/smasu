@@ -16,6 +16,5 @@ class EventTableSeeder extends Seeder
     {
         //
         Event::factory()->count(10)->create();
-        // factory(Database\Factories\EventFactory::class, 10)->create();
     }
 }

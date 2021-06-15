@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\AxiosController;
 
 Route::get('/', function () {
     return view('admin.welcome');
@@ -72,4 +73,4 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 
 //axiosルーティング
-Route::resource('axios', AxiosController::class)->only(['index', 'create', 'store']);
+Route::resource('/axios', AxiosController::class)->only(['index', 'create', 'store']);

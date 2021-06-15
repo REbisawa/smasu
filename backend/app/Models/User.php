@@ -42,16 +42,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get all of the events for the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function events()
-    {
-        return $this->hasMany(Event::class);
-    }
-
-    /**
      * The admins that belong to the User
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -59,5 +49,16 @@ class User extends Authenticatable
     public function admins()
     {
         return $this->belongsToMany(Admin::class);
+    }
+
+
+    /**
+     * Get all of the schedules for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
     }
 }

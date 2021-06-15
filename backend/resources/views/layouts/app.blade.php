@@ -17,6 +17,7 @@
         <script src="https://kit.fontawesome.com/14cef441fc.js" crossorigin="anonymous"></script>
 
         <!-- Scripts -->
+        <script>var user_id = "<?= Auth::id() ?>"</script>
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/components.js') }}"></script>
 
@@ -102,7 +103,7 @@
                 <div class=" h-1/2 w-1/2 py-3">
                     {{ $timeline }}
                 </div>
-                <div class="w-full h-1/2 py-3 bg-gray-600">
+                <div class="w-full h-1/2 py-3">
                     {{ $employee }}
                 </div>
             </main>
