@@ -15,7 +15,11 @@ module.exports = {
             colors: {
 
             },
+            height: {
+                '1/2v': '50vh',
+            }
         },
+
     },
 
     variants: {

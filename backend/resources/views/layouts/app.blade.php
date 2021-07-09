@@ -25,7 +25,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen flex bg-gray-100">
+        <div class="flex bg-gray-100">
             
             <!-- Page Heading -->
             <header class="bg-indigo-500 shadow w-2/5 bb">
@@ -96,14 +96,14 @@
             </header>
 
             <!-- Page Content -->
-            <main class="w-3/4 flex flex-wrap" x-data="app()" x-init="[initDate(), getNoOfDays(), readEvent()]" x-cloak>
-                <div class="h-1/2 w-1/2 py-3">
+            <main class="w-3/4 flex flex-wrap py-5" x-data="app()" x-init="[initDate(), getNoOfDays(), readEvent(), getNoOfWeekDays()]" x-cloak>
+                <div class="h-1/2v w-1/2 py-3">
                     {{ $slot }}
                 </div>
-                <div class=" h-1/2 w-1/2 py-3">
+                <div class=" h-1/2v w-1/2 py-3">
                     {{ $timeline }}
                 </div>
-                <div class="w-full h-1/2 py-3">
+                <div class="w-full h-1/2v py-3 overflow-y-scroll">
                     {{ $employee }}
                 </div>
             </main>

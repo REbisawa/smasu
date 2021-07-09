@@ -11682,6 +11682,10 @@ select {
   height: 100vh;
 }
 
+.h-1\/2v {
+  height: 50vh;
+}
+
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
@@ -43023,6 +43027,10 @@ select {
     height: 100vh;
   }
 
+  .sm\:h-1\/2v {
+    height: 50vh;
+  }
+
   .sm\:text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
@@ -74192,6 +74200,10 @@ select {
 
   .md\:h-screen {
     height: 100vh;
+  }
+
+  .md\:h-1\/2v {
+    height: 50vh;
   }
 
   .md\:text-xs {
@@ -105365,6 +105377,10 @@ select {
     height: 100vh;
   }
 
+  .lg\:h-1\/2v {
+    height: 50vh;
+  }
+
   .lg\:text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
@@ -136536,6 +136552,10 @@ select {
     height: 100vh;
   }
 
+  .xl\:h-1\/2v {
+    height: 50vh;
+  }
+
   .xl\:text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
@@ -167705,6 +167725,10 @@ select {
 
   .\32xl\:h-screen {
     height: 100vh;
+  }
+
+  .\32xl\:h-1\/2v {
+    height: 50vh;
   }
 
   .\32xl\:text-xs {

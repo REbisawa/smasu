@@ -226,26 +226,28 @@
                     $admin = Auth::user();
                     $users = $admin->users;
                 @endphp
-                <table class="border-collapse w-full">
+                <table class="border-collapse w-full overflow-y-scroll top-0" style="height: 50vh">
                     <thead>
-                        <tr class="bg-gray-50 border">
-                            <th class="border-solid" x-text="MONTH_NAMES[month]"></th> 
-                            <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
-                                <th x-text="date" class="border"></th>
+                        <tr>
+                            <th class="w-1/4 sticky top-0 bg-white" x-text="MONTH_NAMES[month]"></th> 
+                            <template x-for="(date, dateIndex) in no_of_week_days" :key="dateIndex">
+                                <th x-text="DAYS[dateIndex]" class="w-5 sticky top-0 bg-white" :class="{'bg-green-100 ': isToday(date) }"></th>
+                                
                             </template>
                             {{-- (date, dateIndex) in no_of_days --}}
                         </tr>
                     </thead>
                     <tbody class="overflow-scroll">
                         @foreach ($users as $user)
-                        <tr>
-                            <th> {{ $user->name }} </th>
-                            <td></td>
+                        <tr class="p-3">
+                            <th class="border-2 box-border border-gray-400"> {{ $user->name }} </th>
+                            <template x-for="(date, dateIndex) in no_of_week_days" :key="dateIndex">
+                                <td class="date border-2 box-border border-gray-400" :class="{'bg-green-100': isToday(date)}"></td>
+                            </template>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            <a href="http://localhost/admin/axios?month=2021-06&id={{ Auth::id() }}">テスト</a>
         </x-slot>
 </x-app-layout>
